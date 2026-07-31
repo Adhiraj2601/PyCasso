@@ -1,6 +1,17 @@
 # PyCasso
 
 <p align="center">
+  PyCasso is a browser-based programming puzzle game where players recreate pixel art by writing Python. Instead of drawing directly, players write code that controls the canvas. Python executes entirely in the    browser using **Pyodide**, allowing puzzles to run locally without requiring a backend.
+
+  The project combines a React interface, an in-browser Python runtime, and a modular puzzle engine to create an interactive coding experience focused on learning through visual programming.
+</p>
+
+<p align="center">
+  <a href="https://py-casso.vercel.app/"><strong>🌐 Live Demo</strong></a>
+</p>
+
+
+<p align="center">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white" alt="React">
   <img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" alt="TypeScript">
   <img src="https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white" alt="Vite">
@@ -8,9 +19,6 @@
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
 </p>
 
-PyCasso is a browser-based programming puzzle game where players recreate pixel art by writing Python. Instead of drawing directly, players write code that controls the canvas. Python executes entirely in the browser using **Pyodide**, allowing puzzles to run locally without requiring a backend.
-
-The project combines a React interface, an in-browser Python runtime, and a modular puzzle engine to create an interactive coding experience focused on learning through visual programming.
 
 ---
 
