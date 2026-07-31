@@ -1,17 +1,6 @@
 # PyCasso
 
 <p align="center">
-  PyCasso is a browser-based programming puzzle game where players recreate pixel art by writing Python. Instead of drawing directly, players write code that controls the canvas. Python executes entirely in the    browser using **Pyodide**, allowing puzzles to run locally without requiring a backend.
-
-  The project combines a React interface, an in-browser Python runtime, and a modular puzzle engine to create an interactive coding experience focused on learning through visual programming.
-</p>
-
-<p align="center">
-  <a href="https://py-casso.vercel.app/"><strong>🌐 Live Demo</strong></a>
-</p>
-
-
-<p align="center">
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white" alt="React">
   <img src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white" alt="TypeScript">
   <img src="https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white" alt="Vite">
@@ -19,18 +8,55 @@
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
 </p>
 
+<p align="center">
+PyCasso is a browser-based programming puzzle game where players recreate pixel art by writing Python. Instead of drawing directly, players write code that controls the canvas. Python executes entirely in the    browser using Pyodide, allowing puzzles to run locally without requiring a backend.
+</p>
+
+<p align = "center">
+The project combines a React interface, an in-browser Python runtime, and a modular puzzle engine to create an interactive coding experience focused on learning through visual programming.
+</p>
+
+<p align="center">
+  <a href="https://py-casso.vercel.app/"><strong>🌐 Try it live:</strong></a>
+</p>
+
+<p align="center">
+  <img src="./screenshot.png" alt="PyCasso Screenshot" width="900">
+</p>
+
 
 ---
+
+## Execution flow
+
+```text
+Write Python
+      │
+      ▼
+CodeMirror
+      │
+      ▼
+Pyodide Runtime
+      │
+      ▼
+Grid Engine
+      │
+      ▼
+Canvas Update
+      │
+      ▼
+Validation & Score
+```
 
 ## Architecture
 
 ```text
-                  User
+                   User
                     │
                     ▼
         ┌─────────────────────┐
         │      React UI       │
-        │ Components & State  │
+        │  Components & State │
         └──────────┬──────────┘
                    │
                    ▼
@@ -41,15 +67,15 @@
                    │
                    ▼
         ┌─────────────────────┐
-        │      Pyodide        │
-        │ Python Runtime      │
+        │       Pyodide       │
+        │   Python Runtime    │
         │    (WebAssembly)    │
         └──────────┬──────────┘
                    │
                    ▼
         ┌─────────────────────┐
-        │     Grid Engine     │
-        │ Validation & Logic  │
+        │     Game Engine     │
+        │  Validation & Logic │
         └──────────┬──────────┘
                    │
                    ▼
@@ -62,24 +88,11 @@
 
 - Execute Python entirely in the browser with Pyodide
 - Interactive pixel-art puzzles
+- Live accuracy feedback
 - Code editor powered by CodeMirror 6
 - Puzzle validation with scoring
 - Console output and runtime error reporting
 - Progress persistence using browser storage
-
----
-
-## Interesting implementation techniques
-
-- **Client-side Python execution** using **Pyodide**, enabling Python to run in the browser through **WebAssembly**.
-- **Lazy runtime initialization**, loading the Python interpreter only when the user first executes code.
-- **CDN-based runtime loading**, downloading Pyodide on first use instead of bundling a large runtime into the application.
-- **JavaScript ↔ Python interoperability**, exposing JavaScript functions to Python for manipulating the puzzle grid.
-- **Persistent state** using the **Web Storage API** for saving progress.
-- **React Hooks** to separate runtime initialization, UI state, and puzzle logic.
-- **Controlled CodeMirror editor** integrated with React state.
-- **Execution timeout protection** to prevent long-running user programs.
-- **Modular engine architecture** that keeps UI, runtime, and puzzle logic independent.
 
 ---
 
@@ -105,14 +118,28 @@ The application loads the Pyodide runtime from the official CDN the first time P
 
 ---
 
+## Directory overview
+
+| Directory | Description |
+|-----------|-------------|
+| [`public/`](./public) | Static assets served directly by Vite |
+| [`src/components/`](./src/components) | React components responsible for the editor, grids, dialogs, progress indicators, and navigation. |
+| [`src/engine/`](./src/engine) | Puzzle definitions, validation, game logic, and the Pyodide execution layer |
+
 ## Core project files
 
-| File | Description |
-|------|-------------|
-| [`src/components/CodeEditor.tsx`](./src/components/CodeEditor.tsx) | Python editor, execution controls, and keyboard shortcuts |
-| [`src/engine/pyodideRunner.ts`](./src/engine/pyodideRunner.ts) | Loads and manages the Pyodide runtime and executes user programs |
-| [`src/engine/gameLogic.ts`](./src/engine/gameLogic.ts) | Puzzle validation, scoring, and game state management |
-| [`src/engine/puzzles.ts`](./src/engine/puzzles.ts) | Puzzle definitions and daily challenge data |
+| File | Responsibility |
+|------|----------------|
+| [`src/components/CodeEditor.tsx`](./src/components/CodeEditor.tsx) | Embedded CodeMirror editor and execution controls. |
+| [`src/components/DualGridView.tsx`](./src/components/DualGridView.tsx) | Displays the target image beside the user's generated output. |
+| [`src/components/GridDisplay.tsx`](./src/components/GridDisplay.tsx) | Renders the interactive pixel grid. |
+| [`src/components/AccuracyBar.tsx`](./src/components/AccuracyBar.tsx) | Displays puzzle completion accuracy. |
+| [`src/components/Header.tsx`](./src/components/Header.tsx) | Navigation and puzzle controls. |
+| [`src/components/MenuModal.tsx`](./src/components/MenuModal.tsx) | Application menu and settings. |
+| [`src/components/WinModal.tsx`](./src/components/WinModal.tsx) | Puzzle completion dialog. |
+| [`src/engine/pyodideRunner.ts`](./src/engine/pyodideRunner.ts) | Loads Pyodide from the official CDN, initializes the runtime, and executes Python safely. |
+| [`src/engine/gameLogic.ts`](./src/engine/gameLogic.ts) | Handles puzzle validation, scoring, and gameplay rules. |
+| [`src/engine/puzzles.ts`](./src/engine/puzzles.ts) | Stores puzzle definitions and challenge data. |
 
 ---
 
@@ -130,54 +157,38 @@ The application loads the Pyodide runtime from the official CDN the first time P
 
 ## Project structure
 
+
 ```text
 .
 ├── public/
 ├── src/
-│   ├── assets/
 │   ├── components/
+│   │   ├── AccuracyBar.tsx
+│   │   ├── CodeEditor.tsx
+│   │   ├── DualGridView.tsx
+│   │   ├── GridDisplay.tsx
+│   │   ├── GridIcons.tsx
+│   │   ├── Header.tsx
+│   │   ├── MenuModal.tsx
+│   │   └── WinModal.tsx
+│   │
 │   ├── engine/
-│   ├── hooks/
-│   └── utils/
+│   │   ├── gameLogic.ts
+│   │   ├── puzzles.ts
+│   │   └── pyodideRunner.ts
+│   │
+│   ├── App.tsx
+│   ├── index.css
+│   └── main.tsx
+│
 ├── index.html
 ├── package.json
-├── tsconfig.json
 ├── vite.config.ts
-└── eslint.config.js
-```
-
-### Directory overview
-
-| Directory | Description |
-|-----------|-------------|
-| [`public/`](./public) | Static assets served directly by Vite |
-| [`src/components/`](./src/components) | React UI components including the editor, canvas, dialogs, and layout |
-| [`src/engine/`](./src/engine) | Puzzle definitions, validation, game logic, and the Pyodide execution layer |
-| [`src/assets/`](./src/assets) | Images, icons, and other static resources |
-| [`src/hooks/`](./src/hooks) | Custom React hooks |
-| [`src/utils/`](./src/utils) | Shared helper functions |
-
----
-
-## Execution flow
-
-```text
-Write Python
-      │
-      ▼
-CodeMirror
-      │
-      ▼
-Pyodide Runtime
-      │
-      ▼
-Grid Engine
-      │
-      ▼
-Canvas Update
-      │
-      ▼
-Validation & Score
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
+├── eslint.config.js
+└── README.md
 ```
 
 ---
