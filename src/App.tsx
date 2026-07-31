@@ -203,10 +203,6 @@ function App() {
             setPuzzle(selectedPuzzle);
             setShowMenu(false);
           }}
-          onResetCode={() => {
-            setCode(puzzle.defaultCode);
-            setShowMenu(false);
-          }}
           onClose={() => setShowMenu(false)}
         />
       )}
