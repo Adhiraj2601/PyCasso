@@ -55,12 +55,9 @@ The project combines a React interface, an in-browser Python runtime, and a modu
 - Execute Python entirely in the browser with Pyodide
 - Interactive pixel-art puzzles
 - Code editor powered by CodeMirror 6
-- Daily puzzle system
 - Puzzle validation with scoring
 - Console output and runtime error reporting
-- Keyboard shortcuts for faster execution
 - Progress persistence using browser storage
-- Responsive interface for desktop and mobile
 
 ---
 
@@ -75,15 +72,6 @@ The project combines a React interface, an in-browser Python runtime, and a modu
 - **Controlled CodeMirror editor** integrated with React state.
 - **Execution timeout protection** to prevent long-running user programs.
 - **Modular engine architecture** that keeps UI, runtime, and puzzle logic independent.
-
-### References
-
-- React: https://react.dev/
-- React Hooks: https://react.dev/reference/react
-- WebAssembly (MDN): https://developer.mozilla.org/docs/WebAssembly
-- Web Storage API (MDN): https://developer.mozilla.org/docs/Web/API/Web_Storage_API
-- HTMLScriptElement (MDN): https://developer.mozilla.org/docs/Web/API/HTMLScriptElement
-- KeyboardEvent (MDN): https://developer.mozilla.org/docs/Web/API/KeyboardEvent
 
 ---
 
@@ -100,13 +88,6 @@ The project combines a React interface, an in-browser Python runtime, and a modu
 - **Pyodide** — https://pyodide.org/
 
 The application loads the Pyodide runtime from the official CDN the first time Python code is executed. After initialization, the runtime is reused for subsequent executions to reduce startup overhead.
-
-### Editor
-
-- CodeMirror 6 — https://codemirror.net/
-- React CodeMirror — https://github.com/uiwjs/react-codemirror
-- Python Language Package — https://github.com/codemirror/lang-python
-- One Dark Theme — https://github.com/codemirror/theme-one-dark
 
 ### Tooling
 
