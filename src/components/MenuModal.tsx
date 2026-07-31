@@ -136,7 +136,7 @@ const MenuModal: React.FC<MenuModalProps> = ({
                 Goal
               </h3>
               <p>
-                Write Python code to reproduce the <strong>Target Grid</strong> pattern on the left onto your <strong>Player Grid</strong> on the right.
+                Pycasso was inspired by the popular game Wordle, but with a programming twist! In Pycasso, your goal is to recreate a grid pattern by writing Python code to reproduce the <strong>Target Grid</strong> pattern on the left onto your <strong>Player Grid</strong> on the right.
               </p>
 
               <h3 className="how-to-play__heading">
