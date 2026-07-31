@@ -21,7 +21,7 @@ import type { CellData, Puzzle } from './engine/puzzles';
 
 function App() {
   // --- Puzzle state ---
-  const [puzzle, setPuzzle] = useState<Puzzle>(() => getDailyPuzzle(new Date()));
+  const [puzzle, setPuzzle] = useState<Puzzle>(() => PUZZLES[0];
 
   // --- Game state ---
   const [playerGrid, setPlayerGrid] = useState<CellData[][]>(() => createEmptyGrid(5));
