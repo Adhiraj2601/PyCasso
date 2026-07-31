@@ -256,8 +256,7 @@ export const PUZZLES: Puzzle[] = [
       row(['green'], ['green'], ['green'], ['green'], ['green']),
       row(['blue'], ['blue'], ['blue'], ['blue'], ['blue']),
     ],
-    defaultCode: `colors = ["red", "orange", "yellow", "green", "blue"]
-for x in range(5):
+    defaultCode: `for x in range(5):
     for y in range(5):
         pydle(x, y, "", "white")`,
   },
