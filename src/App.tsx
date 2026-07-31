@@ -9,7 +9,6 @@ import AccuracyBar from './components/AccuracyBar';
 import WinModal from './components/WinModal';
 import MenuModal from './components/MenuModal';
 import {
-  getDailyPuzzle,
   createEmptyGrid,
   validateGrid,
   saveProgress,
