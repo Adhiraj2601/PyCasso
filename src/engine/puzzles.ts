@@ -31,11 +31,7 @@ export const PUZZLES: Puzzle[] = [
       row(['black'], ['white'], ['black'], ['white'], ['black']),
       row(['white'], ['black'], ['white'], ['black'], ['white']),
     ],
-    defaultCode: `# Available Colors: "white", "black", "red", "blue", "green", "yellow", "orange", "purple", "pink", "cyan", "gray", "brown"
-# Available Symbols: "", "star", "heart", "snowflake", "moon"
-# Usage: pydle(x, y, symbol="", color="white")
-
-for x in range(5):
+    defaultCode: `for x in range(5):
     for y in range(5):
         pydle(x, y, "", "white")`,
   },
