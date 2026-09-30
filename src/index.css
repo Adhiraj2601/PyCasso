@@ -94,8 +94,7 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background: linear-gradient(90deg, #fdfbbe 0%, #bbf0d2 100%);
-  background-attachment: fixed;
+  background: transparent;
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
@@ -159,7 +158,7 @@ body {
   font-size: 2.25rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  background: linear-gradient(135deg, var(--accent-primary), #a29bfe);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -167,7 +166,7 @@ body {
 }
 
 .loading-screen__text {
-  color: #475569;
+  color: var(--text-secondary);
   font-size: 0.875rem;
   font-weight: 500;
 }
@@ -464,9 +463,9 @@ body {
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  color: #1e293b;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
   cursor: pointer;
   padding: var(--space-sm);
   border-radius: var(--radius-sm);
@@ -478,15 +477,15 @@ body {
 }
 
 .header__menu-btn:hover {
-  color: #0f172a;
-  background: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  color: var(--text-primary);
+  background: var(--bg-card-hover);
+  border-color: var(--border-subtle);
 }
 
 .header__nav-btn {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  color: #1e293b;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
   cursor: pointer;
   padding: var(--space-xs);
   border-radius: var(--radius-round);
@@ -500,9 +499,8 @@ body {
 }
 
 .header__nav-btn:hover {
-  color: #0f172a;
-  background: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  color: var(--text-primary);
+  background: var(--bg-card-hover);
 }
 
 .header__title {
@@ -512,7 +510,7 @@ body {
   align-items: center;
   gap: var(--space-sm);
   letter-spacing: -0.02em;
-  color: #0f172a;
+  color: var(--text-primary);
 }
 
 .header__logo {
@@ -521,16 +519,16 @@ body {
 }
 
 .header__subtitle {
-  color: #475569;
+  color: var(--text-muted);
   font-size: 0.8rem;
-  font-weight: 500;
+  font-weight: 400;
   margin-top: 2px;
   letter-spacing: 0.02em;
 }
 
 .header__divider {
   border: none;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid var(--border-default);
   margin-top: var(--space-md);
 }
 
