@@ -1,13 +1,15 @@
 // Pycasso — Main App Component
-// Orchestrates puzzle state, Pyodide execution, and UI composition
+// Orchestrates puzzle state, Pyodide execution, game logic, and responsive UI composition
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import Header from './components/Header';
+import PuzzleInfoBar from './components/PuzzleInfoBar';
 import DualGridView from './components/DualGridView';
 import CodeEditor from './components/CodeEditor';
 import AccuracyBar from './components/AccuracyBar';
 import WinModal from './components/WinModal';
 import MenuModal from './components/MenuModal';
+import ApiCheatSheetModal from './components/ApiCheatSheetModal';
 import HamsterLoader from './components/HamsterLoader';
 import {
   createEmptyGrid,
@@ -34,6 +36,7 @@ function App() {
   const [hasWon, setHasWon] = useState<boolean>(false);
   const [showWinModal, setShowWinModal] = useState<boolean>(false);
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const [showApiModal, setShowApiModal] = useState<boolean>(false);
 
   // --- UI state ---
   const [activeTab, setActiveTab] = useState<'code' | 'console'>('code');
@@ -47,7 +50,7 @@ function App() {
 
     (async () => {
       try {
-        setLoadingMessage('Loading Python runtime…');
+        setLoadingMessage('Loading Python WASM environment…');
         await initPyodide();
         if (!cancelled) {
           setPyodideReady(true);
@@ -98,7 +101,32 @@ function App() {
     [puzzle.id]
   );
 
-  const canGoNext = true; // Seamless circular navigation across all 31 puzzles
+  // Keyboard navigation for puzzles: Ctrl/Cmd + ArrowLeft / ArrowRight
+  useEffect(() => {
+    const handleGlobalKeys = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'ArrowLeft') {
+        e.preventDefault();
+        navigatePuzzle(-1);
+      } else if ((e.ctrlKey || e.metaKey) && e.key === 'ArrowRight') {
+        e.preventDefault();
+        navigatePuzzle(1);
+      }
+    };
+    window.addEventListener('keydown', handleGlobalKeys);
+    return () => window.removeEventListener('keydown', handleGlobalKeys);
+  }, [navigatePuzzle]);
+
+  const canGoNext = true; // Circular navigation across all 31 puzzles
+
+  // Reset code handler
+  const handleResetCode = useCallback(() => {
+    setCode(puzzle.defaultCode);
+    setPlayerGrid(createEmptyGrid(5));
+    setAccuracy(0);
+    setHasRun(false);
+    setError(null);
+    setConsoleOutput('');
+  }, [puzzle.defaultCode]);
 
   // --- Run code ---
   const handleRun = useCallback(async () => {
@@ -143,6 +171,15 @@ function App() {
     }
   }, [code, puzzle, attempts, isRunning]);
 
+  // Compute filled cell counts for the info bar & diagnostics
+  const targetFilledCount = useMemo(() => {
+    return puzzle.targetGrid.flat().filter((c) => c.color !== 'black' || !!c.icon).length;
+  }, [puzzle.targetGrid]);
+
+  const playerFilledCount = useMemo(() => {
+    return playerGrid.flat().filter((c) => c.color !== 'black' || !!c.icon).length;
+  }, [playerGrid]);
+
   // --- Loading screen ---
   if (!pyodideReady) {
     return (
@@ -157,23 +194,47 @@ function App() {
   // --- Main UI ---
   return (
     <div className="app">
+      {/* 1. Compact Header */}
       <Header
         puzzleId={puzzle.id}
-        puzzleTitle={puzzle.title}
+        totalPuzzles={PUZZLES.length}
+        isSolved={hasWon}
         onPrevDay={() => navigatePuzzle(-1)}
         onNextDay={() => navigatePuzzle(1)}
         canGoNext={canGoNext}
         onOpenMenu={() => setShowMenu(true)}
       />
 
+      {/* 2. Unified Puzzle Info Bar */}
+      <PuzzleInfoBar
+        puzzleId={puzzle.id}
+        puzzleTitle={puzzle.title}
+        targetFilledCount={targetFilledCount}
+        playerFilledCount={playerFilledCount}
+        attempts={attempts}
+        onResetCode={handleResetCode}
+        onOpenApiHelp={() => setShowApiModal(true)}
+      />
+
+      {/* 3. Central Dual Canvases (Visual Core) */}
       <DualGridView
         targetGrid={puzzle.targetGrid}
         playerGrid={playerGrid}
         isMatched={hasWon}
+        accuracy={accuracy}
+        hasRun={hasRun}
+        isRunning={isRunning}
       />
 
-      <AccuracyBar accuracy={accuracy} visible={hasRun} />
+      {/* 4. Match Feedback & Accuracy Diagnostics */}
+      <AccuracyBar
+        accuracy={accuracy}
+        visible={hasRun}
+        targetCount={targetFilledCount}
+        playerCount={playerFilledCount}
+      />
 
+      {/* 5. Unified Code Editor & Terminal */}
       <CodeEditor
         code={code}
         onCodeChange={setCode}
@@ -181,19 +242,31 @@ function App() {
         activeTab={activeTab}
         onTabChange={setActiveTab}
         onRun={handleRun}
+        onReset={handleResetCode}
+        onOpenHelp={() => setShowApiModal(true)}
         isRunning={isRunning}
         error={error}
+        accuracy={accuracy}
+        hasRun={hasRun}
       />
 
+      {/* Victory Celebration Modal */}
       {showWinModal && (
         <WinModal
           accuracy={accuracy}
           attempts={attempts}
+          puzzleId={puzzle.id}
           puzzleTitle={puzzle.title}
           onClose={() => setShowWinModal(false)}
+          onNextPuzzle={() => {
+            setShowWinModal(false);
+            navigatePuzzle(1);
+          }}
+          canGoNext={canGoNext}
         />
       )}
 
+      {/* Menu / Puzzle Archive Drawer */}
       {showMenu && (
         <MenuModal
           currentPuzzleId={puzzle.id}
@@ -203,6 +276,11 @@ function App() {
           }}
           onClose={() => setShowMenu(false)}
         />
+      )}
+
+      {/* Quick API Reference Modal */}
+      {showApiModal && (
+        <ApiCheatSheetModal onClose={() => setShowApiModal(false)} />
       )}
     </div>
   );
