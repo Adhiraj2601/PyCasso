@@ -111,7 +111,6 @@ export async function runCode(code: string): Promise<RunResult> {
   };
 
   pyodide.globals.set('pydle', pydleFunction);
-  pyodide.globals.set('pydel', pydleFunction); // Alias for common user typo
 
   // Run with timeout
   try {
@@ -134,10 +133,9 @@ export async function runCode(code: string): Promise<RunResult> {
       error = String(err);
     }
   } finally {
-    // Clean up the injected functions
+    // Clean up the injected function
     try {
       pyodide.globals.delete('pydle');
-      pyodide.globals.delete('pydel');
     } catch {
       // ignore
     }
