@@ -1,6 +1,7 @@
 // Header component — title bar with navigation, hamburger menu, puzzle info
 
 import React from 'react';
+import PaletteLogo from './PaletteLogo';
 
 interface HeaderProps {
   puzzleId: number;
@@ -45,12 +46,7 @@ const Header: React.FC<HeaderProps> = ({
 
         {/* Logo + Title */}
         <h1 className="header__title">
-          <svg className="header__logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="2" width="12" height="12" rx="2" fill="#6c5ce7" />
-            <rect x="18" y="2" width="12" height="12" rx="2" fill="#a29bfe" />
-            <rect x="2" y="18" width="12" height="12" rx="2" fill="#a29bfe" />
-            <rect x="18" y="18" width="12" height="12" rx="2" fill="#6c5ce7" />
-          </svg>
+          <PaletteLogo className="header__logo" size={28} />
           Pycasso #{puzzleId}
         </h1>
 

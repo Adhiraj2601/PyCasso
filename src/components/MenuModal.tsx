@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { PUZZLES } from '../engine/puzzles';
 import type { Puzzle } from '../engine/puzzles';
 import { loadProgress } from '../engine/gameLogic';
+import PaletteLogo from './PaletteLogo';
 
 interface MenuModalProps {
   currentPuzzleId: number;
@@ -42,12 +43,7 @@ const MenuModal: React.FC<MenuModalProps> = ({
         {/* Header */}
         <div className="menu-drawer__header">
           <div className="menu-drawer__brand">
-            <svg className="header__logo" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="2" width="12" height="12" rx="2" fill="#6366f1" />
-              <rect x="18" y="2" width="12" height="12" rx="2" fill="#818cf8" />
-              <rect x="2" y="18" width="12" height="12" rx="2" fill="#818cf8" />
-              <rect x="18" y="18" width="12" height="12" rx="2" fill="#6366f1" />
-            </svg>
+            <PaletteLogo className="header__logo" size={24} />
             <h2>Pycasso Menu</h2>
           </div>
           <button className="menu-drawer__close-btn" onClick={onClose} aria-label="Close menu">
