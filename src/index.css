@@ -3,10 +3,11 @@
    Dark theme, modern minimalist, premium coding puzzle game
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Saira+Stencil:wght@400;500;600;700;800;900&family=Saira+Stencil+One&display=swap');
 
 /* --- CSS Custom Properties --- */
 :root {
+  --font-stencil: 'Saira Stencil', 'Saira Stencil One', sans-serif;
   /* Colors */
   --bg-primary: #0b0f17;
   --bg-secondary: #111827;
@@ -999,6 +1000,7 @@ body {
   box-shadow: var(--shadow-elevated);
   animation: slideUp 0.3s ease;
   overflow: hidden;
+  font-family: var(--font-stencil);
 }
 
 .menu-drawer__header {
@@ -1016,8 +1018,10 @@ body {
 }
 
 .menu-drawer__brand h2 {
-  font-size: 1.2rem;
+  font-family: var(--font-stencil);
+  font-size: 1.25rem;
   font-weight: 700;
+  letter-spacing: 0.03em;
 }
 
 .menu-drawer__close-btn {
@@ -1050,8 +1054,10 @@ body {
   background: none;
   border: none;
   color: var(--text-muted);
-  font-size: 0.8rem;
+  font-family: var(--font-stencil);
+  font-size: 0.82rem;
   font-weight: 600;
+  letter-spacing: 0.03em;
   cursor: pointer;
   border-radius: var(--radius-sm);
   transition: all var(--transition-fast);
@@ -1078,7 +1084,9 @@ body {
 }
 
 .menu-drawer__section-desc {
+  font-family: var(--font-stencil);
   font-size: 0.85rem;
+  letter-spacing: 0.02em;
   color: var(--text-muted);
   margin-bottom: var(--space-md);
 }
@@ -1119,20 +1127,26 @@ body {
 }
 
 .puzzle-archive__card-num {
-  font-size: 0.7rem;
+  font-family: var(--font-stencil);
+  font-size: 0.72rem;
   font-weight: 700;
+  letter-spacing: 0.04em;
   color: var(--text-muted);
 }
 
 .puzzle-archive__card-title {
-  font-size: 0.85rem;
+  font-family: var(--font-stencil);
+  font-size: 0.88rem;
   font-weight: 600;
+  letter-spacing: 0.02em;
   color: var(--text-primary);
 }
 
 .puzzle-archive__badge {
+  font-family: var(--font-stencil);
   font-size: 0.65rem;
   font-weight: 700;
+  letter-spacing: 0.05em;
   color: var(--success);
   margin-top: 4px;
 }
@@ -1143,7 +1157,9 @@ body {
 
 /* How to Play */
 .how-to-play__heading {
-  font-size: 0.95rem;
+  font-family: var(--font-stencil);
+  font-size: 0.98rem;
+  letter-spacing: 0.04em;
   margin-top: var(--space-md);
   margin-bottom: var(--space-xs);
   color: var(--text-primary);
@@ -1173,6 +1189,11 @@ body {
   border: 1px solid var(--border-subtle);
 }
 
+.how-to-play code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+
 .how-to-play ul {
   padding-left: var(--space-md);
   margin-top: var(--space-xs);
@@ -1192,9 +1213,10 @@ body {
   border: 1px solid var(--border-default);
   color: var(--text-primary);
   border-radius: var(--radius-sm);
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-family: var(--font-stencil);
+  font-size: 0.88rem;
   font-weight: 600;
+  letter-spacing: 0.03em;
   cursor: pointer;
   transition: all var(--transition-fast);
   display: flex;
@@ -1225,13 +1247,17 @@ body {
 }
 
 .stat-card__value {
+  font-family: var(--font-stencil);
   font-size: 1.4rem;
   font-weight: 800;
+  letter-spacing: 0.03em;
   color: var(--accent-primary-hover);
 }
 
 .stat-card__label {
-  font-size: 0.7rem;
+  font-family: var(--font-stencil);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
   color: var(--text-muted);
   text-transform: uppercase;
   margin-top: 4px;
