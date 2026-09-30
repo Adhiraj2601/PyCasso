@@ -147,7 +147,7 @@ function App() {
   if (!pyodideReady) {
     return (
       <div className="loading-screen">
-        <div className="loading-screen__title">🎨 Pycasso</div>
+        <div className="loading-screen__title">Pycasso</div>
         <HamsterLoader />
         <p className="loading-screen__text">{loadingMessage}</p>
       </div>

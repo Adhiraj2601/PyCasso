@@ -221,7 +221,7 @@ body {
   left: calc(50% - 3.5em);
   width: 7em;
   height: 3.75em;
-  transform: rotate(4deg) translate(-0.8em, 1.85em);
+  transform: rotate(4deg) translate(0.45em, 1.85em);
   transform-origin: 50% 0;
   z-index: 1;
 }
@@ -351,10 +351,10 @@ body {
 /* --- Hamster Animations --- */
 @keyframes hamster {
   from, to {
-    transform: rotate(4deg) translate(-0.8em, 1.85em);
+    transform: rotate(4deg) translate(0.45em, 1.85em);
   }
   50% {
-    transform: rotate(0) translate(-0.8em, 1.85em);
+    transform: rotate(0) translate(0.45em, 1.85em);
   }
 }
 
