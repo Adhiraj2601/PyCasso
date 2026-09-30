@@ -8,6 +8,7 @@ import CodeEditor from './components/CodeEditor';
 import AccuracyBar from './components/AccuracyBar';
 import WinModal from './components/WinModal';
 import MenuModal from './components/MenuModal';
+import HamsterLoader from './components/HamsterLoader';
 import {
   createEmptyGrid,
   validateGrid,
@@ -147,9 +148,7 @@ function App() {
     return (
       <div className="loading-screen">
         <div className="loading-screen__title">🎨 Pycasso</div>
-        <div className="loading-screen__bar-container">
-          <div className="loading-screen__bar" />
-        </div>
+        <HamsterLoader />
         <p className="loading-screen__text">{loadingMessage}</p>
       </div>
     );
