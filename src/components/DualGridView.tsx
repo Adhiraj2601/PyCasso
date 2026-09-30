@@ -1,4 +1,4 @@
-// DualGridView — side-by-side holographic target and player canvases with center comparison bridge
+// DualGridView — side-by-side holographic target and player canvases with clean responsive center bridge
 
 import React from 'react';
 import type { CellData } from '../engine/puzzles';
@@ -33,16 +33,17 @@ const DualGridView: React.FC<DualGridViewProps> = ({
           grid={targetGrid}
           variant="target"
           label="TARGET"
-          sublabel="Reference Blueprint"
+          sublabel="Blueprint Reference"
           filledCount={targetFilled}
         />
 
         {/* Central Comparison Bridge */}
-        <div className="dual-grid__bridge">
-          <div className="bridge-arrow-icon" aria-hidden="true">
+        <div className="dual-grid__bridge" aria-label={`Match status: ${hasRun ? `${accuracy}%` : 'Not run'}`}>
+          {/* Desktop Right Arrow */}
+          <div className="bridge-arrow-icon bridge-arrow-icon--h" aria-hidden="true">
             <svg
-              width="22"
-              height="22"
+              width="20"
+              height="20"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -52,6 +53,23 @@ const DualGridView: React.FC<DualGridViewProps> = ({
             >
               <line x1="4" y1="12" x2="20" y2="12" />
               <polyline points="13 5 20 12 13 19" />
+            </svg>
+          </div>
+
+          {/* Mobile Down Arrow */}
+          <div className="bridge-arrow-icon bridge-arrow-icon--v" aria-hidden="true">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="12" y1="4" x2="12" y2="20" />
+              <polyline points="5 13 12 20 19 13" />
             </svg>
           </div>
 
@@ -69,7 +87,7 @@ const DualGridView: React.FC<DualGridViewProps> = ({
             {hasRun ? (
               <>
                 <span className="bridge-badge__val">{accuracy}%</span>
-                <span className="bridge-badge__txt">{isMatched ? 'MATCH' : 'ACCURACY'}</span>
+                <span className="bridge-badge__txt">{isMatched ? 'MATCH' : 'MATCH'}</span>
               </>
             ) : (
               <span className="bridge-badge__txt">RECREATE</span>

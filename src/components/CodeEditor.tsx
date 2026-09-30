@@ -170,7 +170,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
             onChange={handleChange}
             extensions={[python()]}
             theme={oneDark}
-            height="230px"
+            height="200px"
             basicSetup={{
               lineNumbers: true,
               foldGutter: false,

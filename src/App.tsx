@@ -212,8 +212,6 @@ function App() {
         targetFilledCount={targetFilledCount}
         playerFilledCount={playerFilledCount}
         attempts={attempts}
-        onResetCode={handleResetCode}
-        onOpenApiHelp={() => setShowApiModal(true)}
       />
 
       {/* 3. Central Dual Canvases (Visual Core) */}
