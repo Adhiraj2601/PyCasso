@@ -94,7 +94,8 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background: var(--bg-primary);
+  background: linear-gradient(90deg, #fdfbbe 0%, #bbf0d2 100%);
+  background-attachment: fixed;
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
@@ -155,34 +156,20 @@ body {
 }
 
 .loading-screen__title {
-  font-size: 2rem;
+  font-size: 2.25rem;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--accent-primary), #a29bfe);
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-.loading-screen__bar-container {
-  width: 240px;
-  height: 6px;
-  background: var(--bg-card);
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.loading-screen__bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent-primary), #a29bfe);
-  border-radius: 3px;
-  animation: shimmer 1.5s infinite;
-  background-size: 200% 100%;
-  width: 60%;
+  text-align: center;
 }
 
 .loading-screen__text {
-  color: var(--text-muted);
+  color: #475569;
   font-size: 0.875rem;
+  font-weight: 500;
 }
 
 /* --- Hamster Loader (From Uiverse.io by Nawsome) --- */
@@ -477,27 +464,29 @@ body {
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #1e293b;
   cursor: pointer;
   padding: var(--space-sm);
   border-radius: var(--radius-sm);
-  transition: color var(--transition-fast), background var(--transition-fast);
+  transition: all var(--transition-fast);
   display: flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(8px);
 }
 
 .header__menu-btn:hover {
-  color: var(--text-primary);
-  background: var(--bg-card);
+  color: #0f172a;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .header__nav-btn {
-  background: none;
-  border: none;
-  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #1e293b;
   cursor: pointer;
   padding: var(--space-xs);
   border-radius: var(--radius-round);
@@ -507,11 +496,13 @@ body {
   justify-content: center;
   width: 28px;
   height: 28px;
+  backdrop-filter: blur(8px);
 }
 
 .header__nav-btn:hover {
-  color: var(--text-primary);
-  background: var(--bg-card);
+  color: #0f172a;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .header__title {
@@ -521,6 +512,7 @@ body {
   align-items: center;
   gap: var(--space-sm);
   letter-spacing: -0.02em;
+  color: #0f172a;
 }
 
 .header__logo {
@@ -529,16 +521,16 @@ body {
 }
 
 .header__subtitle {
-  color: var(--text-muted);
+  color: #475569;
   font-size: 0.8rem;
-  font-weight: 400;
+  font-weight: 500;
   margin-top: 2px;
   letter-spacing: 0.02em;
 }
 
 .header__divider {
   border: none;
-  border-top: 1px solid var(--border-default);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
   margin-top: var(--space-md);
 }
 
